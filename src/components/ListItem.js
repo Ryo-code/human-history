@@ -4,12 +4,21 @@ import { CardSection } from "./common";
 
 export default class ListItem extends Component {
   render(){
+    const { title } = styles;
+
     return (
       <CardSection>
-        <Text>
+        <Text style={title}>
           {this.props.times.title}
         </Text>
       </CardSection>
     )
+  }
+}
+
+const styles ={
+  title: {
+    fontSize: 18,
+    paddingLeft: 15,
   }
 }
