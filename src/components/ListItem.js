@@ -5,6 +5,17 @@ import { CardSection } from "./common";
 import * as actions from "../actions"; // "* as action" = everything from there
 
 class ListItem extends Component {
+  renderDescription(){
+    const { times, selectedTimeId } = this.props;
+    if (times.id === selectedTimeId){
+      return (
+        <Text>
+          {times.description}
+        </Text>
+      )
+    }
+  }
+
   render(){
     const { titleStyle } = styles;
     const { id, title } = this.props.times;
@@ -19,6 +30,7 @@ class ListItem extends Component {
               {title}
             </Text>
           </CardSection>
+          {this.renderDescription()}
         </View>
       </TouchableWithoutFeedback>
     )
@@ -32,5 +44,8 @@ const styles ={
   }
 }
 
-export default connect(null, actions)(ListItem);
-//If you don't want to 'map state to props' then you should use "null"
+const mapStateToProps = state => {
+  return { selectedTimeId: state.selectedTimeId };
+}
+
+export default connect(mapStateToProps, actions)(ListItem);
