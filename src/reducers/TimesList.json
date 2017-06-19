@@ -1,0 +1,52 @@
+//.json だからexport statementが要らない
+[
+  { 
+    "id": 0,
+    "title": "Paleolithic",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  },
+  { 
+    "id": 1,
+    "title": "Neolithic",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  },
+  { 
+    "id": 2,
+    "title": "Ancient",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  },
+  { 
+    "id": 3,
+    "title": "Medieval",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  },
+  { 
+    "id": 4,
+    "title": "Early Modern",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  },
+  { 
+    "id": 5,
+    "title": "Mid Modern",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  },
+  { 
+    "id": 6,
+    "title": "Contemporary Period",
+    "time-period": "...",
+    "description": "This time is...",
+    "image": ""
+  }
+]

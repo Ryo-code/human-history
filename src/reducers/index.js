@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
+import TimesReducer from "./TimesReducer";
 
 export default combineReducers({
-  times: () => [] //times is a reducer that returns an empty array
+  times: TimesReducer //console.log shows this as a state consisting of object w\ a key of "times"
 });
