@@ -1,26 +1,32 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text, TouchableWithoutFeedback, View } from "react-native";
 import { connect } from "react-redux";
 import { CardSection } from "./common";
-import * as actions from "../actions"; // "* as action" = 
+import * as actions from "../actions"; // "* as action" = everything from there
 
 class ListItem extends Component {
   render(){
-    const { title } = styles;
-    console.log(this.props);
+    const { titleStyle } = styles;
+    const { id, title } = this.props.times;
 
     return (
-      <CardSection>
-        <Text style={title}>
-          {this.props.times.title}
-        </Text>
-      </CardSection>
+      <TouchableWithoutFeedback
+        onPress={() => this.props.selectEra(id)}
+      >
+        <View>
+          <CardSection>
+            <Text style={titleStyle}>
+              {title}
+            </Text>
+          </CardSection>
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }
 
 const styles ={
-  title: {
+  titleStyle: {
     fontSize: 18,
     paddingLeft: 15,
   }
