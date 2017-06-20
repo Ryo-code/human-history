@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
-  Text, TouchableWithoutFeedback, View, LayoutAnimation
+  Text, TouchableWithoutFeedback, View, LayoutAnimation, 
+  Image, Platform, UIManager,
 } from "react-native";
 import { connect } from "react-redux";
 import { CardSection } from "./common";
@@ -8,17 +9,26 @@ import * as actions from "../actions"; // "* as action" = everything from there
 
 class ListItem extends Component {
   componentWillUpdate() {
-    LayoutAnimation.spring();
+    LayoutAnimation.easeInEaseOut();
+    if (Platform.OS === 'android') {
+      UIManager.setLayoutAnimationEnabledExperimental(true)
+    }
   }
 
   renderDescription(){
     const { times, expanded } = this.props;
+    const { contentWrapper, imageStyle, descriptionStyle } = styles;
 
     if (expanded){
       return (
-        <CardSection>
-          <Text style={{flex: 1}}> {times.description} </Text>
-        </CardSection>
+        <View style={contentWrapper}>
+          <Image
+            style={imageStyle}
+            source={{ uri: times.image }}
+          />
+          <Text style={{textAlign: 'center'}}>({times.timePeriod})</Text>
+          <Text style={descriptionStyle}>{times.description}</Text>
+        </View>
       );
     }
   }
@@ -48,6 +58,20 @@ const styles ={
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15,
+    fontWeight: '500',
+  },
+  contentWrapper: {
+    flexDirection: 'column',
+    
+  },
+  imageStyle: {
+    height: 250, 
+  },
+  descriptionStyle: {
+    flex: 1,
+    marginBottom: 50,
+    padding: 15,
+    textAlign: 'justify',
   }
 }
 
