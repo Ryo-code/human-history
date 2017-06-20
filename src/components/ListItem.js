@@ -1,18 +1,25 @@
 import React, { Component } from "react";
-import { Text, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Text, TouchableWithoutFeedback, View, LayoutAnimation
+} from "react-native";
 import { connect } from "react-redux";
 import { CardSection } from "./common";
 import * as actions from "../actions"; // "* as action" = everything from there
 
 class ListItem extends Component {
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
   renderDescription(){
-    const { times, selectedTimeId } = this.props;
-    if (times.id === selectedTimeId){
+    const { times, expanded } = this.props;
+
+    if (expanded){
       return (
-        <Text>
-          {times.description}
-        </Text>
-      )
+        <CardSection>
+          <Text style={{flex: 1}}> {times.description} </Text>
+        </CardSection>
+      );
     }
   }
 
@@ -44,8 +51,9 @@ const styles ={
   }
 }
 
-const mapStateToProps = state => {
-  return { selectedTimeId: state.selectedTimeId };
+const mapStateToProps = (state, ownProps) => {
+  const expanded = state.selectedTimeId === ownProps.times.id; //returns true or false
+  return { expanded }; //shortened version of "expanded: expanded"
 }
 
 export default connect(mapStateToProps, actions)(ListItem);
